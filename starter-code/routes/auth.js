@@ -23,28 +23,28 @@ routerAuth.post('/signup', (req,res,next)=>{
   else {
 
     User.findOne({ "username": username })
-.then(user => {
+    .then(user => {
 
-  if (user !== null) {
-    res.render("auth/signup", {
-      errorMessage: "The username already exists!"
-    });
-  }
+       if (user !== null) {
+         res.render("auth/signup", {
+         errorMessage: "The username already exists!"
+        });
+        }
 
-  else {
+       else {
 
-  User.create({
-    username,
-    password: cryptoPassword
-  })
-  .then(res.redirect('/'))
-  .catch(error => {
-    next(error);
-  })
-  
-  }
+         User.create({
+         username,
+         password: cryptoPassword
+         })
+         .then(res.redirect('/'))
+         .catch(error => {
+          next(error);
+          })
 
-})
+        }
+
+    })
 
   }
 
