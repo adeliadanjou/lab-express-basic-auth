@@ -110,3 +110,9 @@ routerAuth.get("/logout", (req, res, next) => {
     res.redirect("/login");
   });
 });
+
+# instalar BULMA:
+
+pones en el layout:
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
