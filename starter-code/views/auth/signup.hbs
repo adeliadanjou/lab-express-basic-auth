@@ -1,5 +1,6 @@
-  <form id="form" action="/signup" method="POST">
-  
+  <div class="form-container">
+<form id="form" action="/signup" method="POST">
+    <h2>Sign up</h2>
     <label for="username">Username</label><br>
     <input type="text" name="username"
       placeholder="Your username">
@@ -9,8 +10,12 @@
       placeholder="********">
 
     <button type="submit">Create account</button>
-  </for
-
 {{#if errorMessage}}
   <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
+  </form>
+
+
+  </div>
+  
+  

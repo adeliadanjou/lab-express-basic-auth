@@ -18,7 +18,7 @@ routerAuth.post('/signup', (req,res,next)=>{
   const cryptoPassword = bcrypt.hashSync(signUpPassword, salt)
 
   if(signUpUsername === "" || signUpPassword === ""){
-    res.render("auth/signup", {errorMessage:"Indicate a username and a password to sign up"})
+    res.render("auth/signup", {errorMessage:"Indicate an username and a password to sign up"})
   }
   else {
 
@@ -78,7 +78,8 @@ routerAuth.post("/login", (req, res, next) => {
         // Save the login in the session!
         req.session.currentUser = user;
         res.render("index", {
-					message: "Login successful"
+          message: "Login successful", 
+          session: req.session.currentUser
 				});
       } else {
         res.render("login", {
@@ -95,7 +96,7 @@ routerAuth.use((req, res, next) => {
   req.session.currentUser
     ? next()
     : res.render("auth/login", {
-        errorMessage: "Inicia sesión para acceder al area privada"
+        errorMessage: "You have to be logedin"
       });
 });
 

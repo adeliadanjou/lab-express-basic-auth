@@ -1,6 +1,26 @@
+<div class="index-container">
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
-<a href="/login">LOGIN</a>
-<a href="/signup">SIGNUP</a>
-<a href="/logout">LOGOUT</a>
+<img class="index-image" src="/images/index-auth.png" alt="">
+
+<div class="index-links">
+
+<a class="button is-primary button is-medium is-outlined space" href="/login">LOGIN</a>
+<a class="button is-info button is-medium is-outlined space" href="/signup">SIGNUP</a>
+<a class="button is-danger button is-medium is-outlined space" href="/logout">LOGOUT</a>
+
+</div>
+
+{{#if session}}
+<div class="restricted-area">
+  <a class="button is-dark button is-medium space " href="/private">PRIVATE</a>
+  <a class="button is-black button is-medium space" href="/main">MAIN</a>
+</div>
+
+{{/if}}
+
+</div>
+
+
+
+

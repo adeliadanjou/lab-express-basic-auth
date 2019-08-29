@@ -1,13 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash&display=swap');
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
 }
 
 a {
   color: #00B7FF;
 }
 
+.space {
+  margin: 0 20px
+}
+.index-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+ 
+}
 
+.restricted-area {
+  margin-top: 50px;
+  
+}
+
+h1, h2 {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 4rem;
+  text-decoration: underline;
+  margin-bottom: 50px;
+}
+
+.index-image {
+  margin-bottom: 50px;
+ 
+}
+
+.index-links {
+  display: inline
+}
 .error-message {
   background: #F02B63;
   box-sizing: border-box;
@@ -18,8 +50,26 @@ a {
 }
 
 #form {
-  margin: 30px auto;
+  margin: 100px auto;
   width: 380px;
+  border: 1px rgba(255, 255, 255, 0.5);
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 3px 3px 5px 0px rgba(85, 80, 80, 0.75);
+}
+
+.form-container {
+  // padding: 50px;
+  
+  background-color: rgb(245, 166, 147);
+
+  // div as viewport size:
+  position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
 }
 
 #form label {
@@ -41,8 +91,8 @@ a {
 }
 
 #form button {
-  background: #d3d01b;
-  border: 1px solid #d3d01b;
+  background: #d19c20;
+  border: 1px solid #d19c20;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -56,7 +106,46 @@ a {
 }
 
 #form button:hover {
-  background: #fff;
-  color: #43a3e6;
+  background: rgb(255, 255, 255);
+  color: #000000;
   transition: .3s ease background;
+}
+
+// PRIVATE
+
+.private-container {
+  position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+  
+  padding-top: 50px;
+  background-color: rgb(255, 0, 0);
+  color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column
+}
+
+h3 {
+  font-size: 2rem;
+
+}
+
+.private-image {
+  margin-top: 50px;
+  height: 300px;
+  margin-bottom: 30px;
+}
+
+// MAIN
+
+.main-container {
+  background-color: rgb(178, 236, 229) !important;
+ 
+}
+
+.main-image {
+  height: 350px !important;
 }
