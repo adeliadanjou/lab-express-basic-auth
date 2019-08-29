@@ -12,17 +12,17 @@ routerAuth.get('/signup', (req,res,next)=>{
 })
 
 routerAuth.post('/signup', (req,res,next)=>{
-  const username = req.body.username;
-  const password = req.body.password
+  const signUpUsername = req.body.username;
+  const signUpPassword = req.body.password
   const salt = bcrypt.genSaltSync(theSalt);
-  const cryptoPassword = bcrypt.hashSync(password, salt)
+  const cryptoPassword = bcrypt.hashSync(signUpPassword, salt)
 
-  if(username === "" || password === ""){
+  if(signUpUsername === "" || signUpPassword === ""){
     res.render("auth/signup", {errorMessage:"Indicate a username and a password to sign up"})
   }
   else {
 
-    User.findOne({ "username": username })
+    User.findOne({ "username": signUpUsername })
     .then(user => {
 
        if (user !== null) {
@@ -35,7 +35,7 @@ routerAuth.post('/signup', (req,res,next)=>{
        else {
 
          User.create({
-         username,
+          signUpUsername,
          password: cryptoPassword
          })
          .then(res.redirect('/'))
@@ -92,11 +92,21 @@ routerAuth.post("/login", (req, res, next) => {
 });
 
 routerAuth.use((req, res, next) => {
-  if (req.session.currentUser) {
-    next();
-  } else {
-		res.redirect('/login')
-  }
+  req.session.currentUser
+    ? next()
+    : res.render("auth/login", {
+        errorMessage: "Inicia sesión para acceder al area privada"
+      });
+});
+
+routerAuth.get("/private", (req, res, next) => res.render("private"));
+routerAuth.get("/main", (req, res, next) => res.render("main"));
+
+routerAuth.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    // can't access session here
+    res.redirect("/login");
+  });
 });
 
 

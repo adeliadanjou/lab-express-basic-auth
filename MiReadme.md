@@ -71,4 +71,42 @@
                2) si la contraseña coincide: guardar el usuario con la session:
                 --->  req.session.currentUser = user
                 
-     
+# ¿Cómo crear páginas secretas que solo se ven cuando estás logeado?
+
+******* IMPORTANTE!! *******
+ESTO DEBE DE ESTAR DEBAJO DE DONDE HICIMOS LOGIN Y GUARDAMOS req.session.currentUser
+si está en otro lado obviamente da problemas.
+
+debajo de la ruta de login ponemos:
+
+- routerAuth.use((req, res, next) => {
+  req.session.currentUser
+    ? next()
+    : res.render("auth/login", {
+        errorMessage: "Inicia sesión para acceder al area privada"
+      });
+  });
+
+ -> Básicamente estamos diciendo:
+         a)  tienes en la session currentUser guardado? pues muestra las rutas que haya debajo de esto.
+         b)  No lo tienes? redirecciona a login y muestra un mensaje de error!
+
+-  AQUI MIS RUTAS PRIVADAS:
+<<<<<<<>> OJO! son privadas porque están debajo del middleware que pusimos arriba >>>>>>>>>
+
+
+routerAuth.get("/private", (req, res, next) => res.render("private"));
+routerAuth.get("/main", (req, res, next) => res.render("main"));
+
+
+
+# ¿Cómo hacer LOGOUT!?
+
+Debajo de lo de la sesión ponemos:
+
+routerAuth.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+   
+    res.redirect("/login");
+  });
+});
